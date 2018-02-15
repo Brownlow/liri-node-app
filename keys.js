@@ -9,7 +9,7 @@ var twitterKeys = {
 
 var spotifyKeys = {
 	client_id: '1ec02febd6a84a6599e22d0e37129cc1',
-	client_secret: 'ebfb272ada5f4bfd8822316f66aae3b6'
+	client_secret: 'ec4bd6d6258846eba51aabbf70d24155'
 }
 
 var omdbKey = {

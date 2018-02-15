@@ -28,6 +28,7 @@ function tweeter(){
 	  }
 	  else {
 	  	for(var i=0; i<tweets.length; i++) {
+	  		console.log('------------------------');
 	  		console.log(tweets[i].text);
 	  		console.log(tweets[i].created_at);
 	  		console.log('------------------------');
@@ -40,17 +41,50 @@ function tweeter(){
 function spotify(){
 
 	var spotify = new Spotify({
-	  id: '1ec02febd6a84a6599e22d0e37129cc1',
-	  secret: 'ebfb272ada5f4bfd8822316f66aae3b6'
+	  id: keys.spotifyKeys.client_id,
+	  secret: keys.spotifyKeys.client_secret
 	});
 	 
-	spotify.search({ type: 'track', query: userInput })
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
+	if(!userInput){
+		spotify.search({ type: 'track', query: 'The Sign' })
+  			.then(function(response) {
+  			  var trackInfo = response.tracks.items;
+  			  for(var i =0; i < trackInfo.length; i++){
+  			  	console.log('-----------------------------------');
+  			  	console.log("You searched for: " + userInput);
+  			  	console.log("Artists: " + trackInfo[i].name);
+  			  	console.log("Song name: " + trackInfo[i].name);
+  			  	console.log("Spotify Preview Link: " + trackInfo[i].preview_url);
+  			  	console.log("Album name: " + trackInfo[i].album.name);
+  			  	console.log('-----------------------------------');
+  			  }
+  			})
+  			.catch(function(err) {
+  			  //console.log(err);
+  		});
+  		
+  	} else{
+
+  		spotify.search({ type: 'track', query: userInput })
+  			.then(function(response) {
+  			  var trackInfo = response.tracks.items;
+  			  for(var i =0; i < trackInfo.length; i++){
+  			  	//console.log(trackInfo);
+  			  	console.log('-----------------------------------')
+  			  	console.log("You searched for: " + userInput);
+  			  	console.log("Artists: " + trackInfo[i].album.artists);
+  			  	console.log("Song name: " + trackInfo[i].name)
+  			  	console.log("Spotify Preview Link: " + trackInfo[i].preview_url)
+  			  	console.log("Album name: " + trackInfo[i].album.name)
+  			  	console.log('-----------------------------------')
+  			  }
+  			})
+  			.catch(function(err) {
+  			  //console.log(err);
+  		});
+  	}
+
+	
 }
 
 // The OMDB =========================================================================
@@ -97,15 +131,19 @@ function omdb(){
 // The Other Stuff ====================================================================
 function doStuff(){
 	fs.readFile('random.txt', 'utf8', function(err, contents) {
-    //console.log(contents);
+    // console.log(contents);
 
+    // create an array from the contents of random.txt
     var inputArr = contents.split(',');
-    //console.log(inputArr);
 
-    var newCommand = inputArr[0];
-    var newInput = inputArr[1];
+    // grab the song title out the array
+    var newInput = inputArr.splice(1);
 
-    spotify(newCommand, newInput);
+    // string it up
+    console.log(JSON.parse(newInput));
+
+    // run the spotify function
+    spotify(newInput);
 	});
 }
 
@@ -127,3 +165,6 @@ if(command === 'my-tweets'){
 } else {
 	console.log('Your commands are wack. Try again.');
 }
+
+// Fix Spotify API situation
+// Get do stuff to do stuff
