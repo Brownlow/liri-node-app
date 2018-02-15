@@ -50,13 +50,13 @@ function spotify(){
   			.then(function(response) {
   			  var trackInfo = response.tracks.items;
   			  for(var i =0; i < trackInfo.length; i++){
-  			  	console.log('-----------------------------------');
+  			  	console.log('-----------------------------------')
   			  	console.log("You searched for: " + userInput);
-  			  	console.log("Artists: " + trackInfo[i].name);
-  			  	console.log("Song name: " + trackInfo[i].name);
-  			  	console.log("Spotify Preview Link: " + trackInfo[i].preview_url);
-  			  	console.log("Album name: " + trackInfo[i].album.name);
-  			  	console.log('-----------------------------------');
+  			  	console.log("Artists: " + trackInfo[i].album.artists[i].name) 
+  			  	console.log("Song name: " + trackInfo[i].name)
+  			  	console.log("Spotify Preview Link: " + trackInfo[i].preview_url)
+  			  	console.log("Album name: " + trackInfo[i].album.name)
+  			  	console.log('-----------------------------------')
   			  }
   			})
   			.catch(function(err) {
@@ -69,10 +69,9 @@ function spotify(){
   			.then(function(response) {
   			  var trackInfo = response.tracks.items;
   			  for(var i =0; i < trackInfo.length; i++){
-  			  	//console.log(trackInfo);
   			  	console.log('-----------------------------------')
   			  	console.log("You searched for: " + userInput);
-  			  	console.log("Artists: " + trackInfo[i].album.artists);
+  			  	console.log("Artists: " + trackInfo[i].album.artists[i].name) 
   			  	console.log("Song name: " + trackInfo[i].name)
   			  	console.log("Spotify Preview Link: " + trackInfo[i].preview_url)
   			  	console.log("Album name: " + trackInfo[i].album.name)
