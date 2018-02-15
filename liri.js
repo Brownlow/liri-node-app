@@ -91,36 +91,35 @@ var omdbUrl = 'http://www.omdbapi.com/';
 
 function omdb(){
 	if(!userInput){
-		request(omdbUrl + "?t=mr+nobody&y=&plot=short&apikey=" + keys.omdbKey.apiKey, function(error, response, body) {
+		console.log('test');
+		request("http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=" + keys.omdbKey.apiKey, function(error, response, body) {
   		if (!error && response.statusCode === 200) {
   	  	var movieInfo = JSON.parse(body);
-  	  	//console.log(movieInfo);
   	  	console.log('------------------------');
-  	  	console.log(movieInfo.Title);
-  	  	console.log(movieInfo.Year);
-  	  	console.log(movieInfo.imdbRating);
-  	  	console.log(movieInfo.Ratings[1].Value);
-  	  	console.log(movieInfo.Country);
-  	  	console.log(movieInfo.Language);
-  	  	console.log(movieInfo.Plot);
-  	  	console.log(movieInfo.Actors);
+  	  	console.log('Movie Title: ' + movieInfo.Title);
+  	  	console.log('Year Released: ' + movieInfo.Year);
+  	  	console.log('IMDB Rating: ' + movieInfo.imdbRating);
+  	  	console.log('Rotten Tomatoes Rating: ' + movieInfo.Ratings[1].Value);
+  	  	console.log('Available In: ' + movieInfo.Country);
+  	  	console.log('Language: ' + movieInfo.Language);
+  	  	console.log('Short Plot: ' + movieInfo.Plot);
+  	  	console.log('Actors: ' + movieInfo.Actors);
   	  	console.log('------------------------');
   		}
 		});
-	} else{
+	} else	{
 		request("http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=" + keys.omdbKey.apiKey, function(error, response, body) {
   		if (!error && response.statusCode === 200) {
   	  	var movieInfo = JSON.parse(body);
-  	  	//console.log(movieInfo);
   	  	console.log('------------------------');
-  	  	console.log(movieInfo.Title);
-  	  	console.log(movieInfo.Year);
-  	  	console.log(movieInfo.imdbRating);
-  	  	console.log(movieInfo.Ratings[1].Value);
-  	  	console.log(movieInfo.Country);
-  	  	console.log(movieInfo.Language);
-  	  	console.log(movieInfo.Plot);
-  	  	console.log(movieInfo.Actors);
+  	  	console.log('Movie Title: ' + movieInfo.Title);
+  	  	console.log('Year Released: ' + movieInfo.Year);
+  	  	console.log('IMDB Rating: ' + movieInfo.imdbRating);
+  	  	console.log('Rotten Tomatoes Rating: ' + movieInfo.Ratings[1].Value);
+  	  	console.log('Available In: ' + movieInfo.Country);
+  	  	console.log('Language: ' + movieInfo.Language);
+  	  	console.log('Short Plot: ' + movieInfo.Plot);
+  	  	console.log('Actors: ' + movieInfo.Actors);
   	  	console.log('------------------------');
   		}
 		});
