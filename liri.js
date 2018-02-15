@@ -37,6 +37,8 @@ function tweeter(){
 	});
 }
 
+
+
 // Spotify =========================================================================
 function spotify(){
 
@@ -45,7 +47,7 @@ function spotify(){
 	  secret: keys.spotifyKeys.client_secret
 	});
 	 
-	if(!userInput){
+	if(userInput = []){
 		spotify.search({ type: 'track', query: 'The Sign' })
   			.then(function(response) {
   			  var trackInfo = response.tracks.items;
@@ -90,8 +92,7 @@ function spotify(){
 var omdbUrl = 'http://www.omdbapi.com/';
 
 function omdb(){
-	if(!userInput){
-		console.log('test');
+	if(userInput = []){        
 		request("http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=" + keys.omdbKey.apiKey, function(error, response, body) {
   		if (!error && response.statusCode === 200) {
   	  	var movieInfo = JSON.parse(body);
@@ -140,8 +141,10 @@ function doStuff(){
     // string it up
     console.log(JSON.parse(newInput));
 
+    newInput = userInput
+
     // run the spotify function
-    spotify(newInput);
+    spotify(userInput);
 	});
 }
 
@@ -164,5 +167,4 @@ if(command === 'my-tweets'){
 	console.log('Your commands are wack. Try again.');
 }
 
-// Fix Spotify API situation
-// Get do stuff to do stuff
+// 
